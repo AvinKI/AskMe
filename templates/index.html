@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJxXhqRJSB+Yrd9e9ydfgHhHhh5c8j3lt7tAZHzg8DJlFzV1FsXYhpuD2p1C" crossorigin="anonymous">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Vazir', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #333;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+        }
+
+        .hero-section {
+            background: url('https://via.placeholder.com/1500x700') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .service-card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 50px 0;
+            }
+
+            .service-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Innovative Company</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1>Welcome to Our Website!</h1>
+            <p>Where innovation and technology meet</p>
+            <a href="#services" class="btn btn-light btn-lg">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="section-title">About Us</h2>
+                    <p>Our company was established with the goal of providing innovative solutions in technology and
+                        improving service quality for our customers. Our team consists of experienced professionals in
+                        various fields, driving our goal to offer high-quality services to the community and global
+                        markets.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://via.placeholder.com/500x400" alt="About Us" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-light py-5">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Service 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Service 1</h5>
+                            <p class="card-text">We provide innovative services that help our clients enhance their
+                                performance and efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Service 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Service 2</h5>
+                            <p class="card-text">Our team is continuously researching and developing innovative solutions
+                                for our clients.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Service 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Service 3</h5>
+                            <p class="card-text">We offer technological consulting services, providing innovative strategies
+                                to help businesses grow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Innovative Company - All Rights Reserved</p>
+            <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq0Fkw7diB2m9v9mC0mFE6GA8b6Exr1QJ6cGk4D0k7J8O9r5z6" crossorigin="anonymous"></script>
+</body>
+
+</html>

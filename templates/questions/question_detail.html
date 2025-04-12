@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>{{ question.title }}</h1>
+<p>{{ question.body }}</p>
+<p><strong>Tags:</strong>
+    {% for tag in question.tags.all %}
+        <span>#{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+
+<div id="question-likes">
+    <h3>Likes: {{ like_count }}</h3>
+    <h3>Dislikes: {{ dislike_count }}</h3>
+</div>
+
+<hr>
+
+<h3>Answers</h3>
+{% for answer in answers %}
+    <div class="answer {% if answer.is_accepted %}accepted{% endif %}">
+        <p>{{ answer.body }}</p>
+        <small>by {{ answer.author }}</small>
+
+        <div id="answer-likes-{{ answer.id }}">
+            <button id="a-like-btn-{{ answer.id }}" onclick="like('answer', {{ answer.id }}, true)">
+                👍 (<span id="a-like-{{ answer.id }}">{{ answer.like_count }}</span>)
+            </button>
+            <button id="a-dislike-btn-{{ answer.id }}" onclick="like('answer', {{ answer.id }}, false)">
+                👎 (<span id="a-dislike-{{ answer.id }}">{{ answer.like_count }}</span>)
+            </button>
+        </div>
+        {% if answer.is_accepted %}
+        <p><strong>This answer is accepted.</strong></p>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No answers yet.</p>
+{% endfor %}
+
+<hr>
+
+<h3>Submit Your Answer</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function like(objType, objId, isLike) {
+    fetch("{% url 'ajax_toggle_like' %}", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: `obj_type=${objType}&obj_id=${objId}&is_like=${isLike}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (objType === 'question') {
+            document.getElementById('q-like').innerText = data.like_count;
+            document.getElementById('q-dislike').innerText = data.dislike_count;
+            toggleLikeDislikeButtons('question', objId, isLike);
+        } else {
+            document.getElementById(`a-like-${objId}`).innerText = data.like_count;
+            document.getElementById(`a-dislike-${objId}`).innerText = data.dislike_count;
+            toggleLikeDislikeButtons('answer', objId, isLike);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function toggleLikeDislikeButtons(type, id, isLike) {
+    if (type === 'question') {
+        const likeBtn = document.getElementById('like-btn');
+        const dislikeBtn = document.getElementById('dislike-btn');
+        if (isLike) {
+            likeBtn.disabled = true;
+            dislikeBtn.disabled = false;
+        } else {
+            dislikeBtn.disabled = true;
+            likeBtn.disabled = false;
+        }
+    } else {
+        const likeBtn = document.getElementById(`a-like-btn-${id}`);
+        const dislikeBtn = document.getElementById(`a-dislike-btn-${id}`);
+        if (isLike) {
+            likeBtn.disabled = true;
+            dislikeBtn.disabled = false;
+        } else {
+            dislikeBtn.disabled = true;
+            likeBtn.disabled = false;
+        }
+    }
+}
+</script>
+
+{% endblock %}

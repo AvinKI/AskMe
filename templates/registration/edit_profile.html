@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+.container {
+    max-width: 800px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.card-body {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+}
+
+button[type="submit"] {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+</style>
+{% endblock head %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h3>Edit Profile</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="first_name">First Name</label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="last_name">Last Name</label>
+                                {{ form.last_name }}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="bio">Bio</label>
+                                {{ form.bio }}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="avatar">Profile Picture</label>
+                                {{ form.avatar }}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="website">Website</label>
+                                {{ form.website }}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

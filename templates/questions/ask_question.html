@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="mb-4 text-center">Ask a New Question</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                {{ form.title }}
+                {% for error in form.title.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ form.body.id_for_label }}" class="form-label">Body</label>
+                {{ form.body }}
+                {% for error in form.body.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ form.tags.id_for_label }}" class="form-label">Tags</label>
+                {{ form.tags }}
+                {% for error in form.tags.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit Question</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
